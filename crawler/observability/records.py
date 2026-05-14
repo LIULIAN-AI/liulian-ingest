@@ -144,4 +144,4 @@ def _stable_uuid(kind: str, name: str, payload: dict[str, JsonValue]) -> UUID:
     from json import dumps
 
     canonical = dumps(payload, sort_keys=True, separators=(",", ":"))
-    return uuid5(NAMESPACE_URL, f"neobanker-crawler:{kind}:{name}:{canonical}")
+    return uuid5(NAMESPACE_URL, f"liulian-ingest:{kind}:{name}:{canonical}")

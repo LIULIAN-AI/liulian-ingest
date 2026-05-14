@@ -284,4 +284,4 @@ def _stable_id(kind: str, payload: Mapping[str, JsonValue]) -> str:
     from json import dumps
 
     canonical = dumps(payload, sort_keys=True, separators=(",", ":"))
-    return str(uuid5(NAMESPACE_URL, f"neobanker-crawler:{kind}:{canonical}"))
+    return str(uuid5(NAMESPACE_URL, f"liulian-ingest:{kind}:{canonical}"))

@@ -17,7 +17,7 @@ class WikipediaFetchTool:
         self._transport = transport
         self._api_base_url = api_base_url.rstrip("/")
         self._headers = {
-            "User-Agent": "neobanker-crawler/0.1 (+wikipedia-fetch)",
+            "User-Agent": "liulian-ingest/0.1 (+wikipedia-fetch)",
             "Accept": "application/json",
         }
 

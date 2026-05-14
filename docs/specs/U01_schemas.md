@@ -3,9 +3,9 @@
 ## Purpose
 
 Produce the canonical Pydantic v2 models that every other unit in
-`neobanker-crawler/` consumes. They MUST stay in 1:1 lock-step with the
+`liulian-ingest/` consumes. They MUST stay in 1:1 lock-step with the
 `@Entity`-annotated Java classes in
-`neobanker-backend-MVP-V2/src/main/java/com/neobanker/neobank/models/`,
+`liulian-api-MVP-V2/src/main/java/com/liulian/neobank/models/`,
 because every value the crawler writes is going to be serialized as one
 of these and POSTed to the backend's future
 `/internal/crawler/upsert` endpoint. Drift between the two sides is the
@@ -148,7 +148,7 @@ class FieldProvenance(_Base):
 A small standalone Python 3.12 script (no third-party deps beyond
 `stdlib`) that:
 
-1. Walks `neobanker-backend-MVP-V2/src/main/java/com/neobanker/neobank/models/`.
+1. Walks `liulian-api-MVP-V2/src/main/java/com/liulian/neobank/models/`.
 2. For each `.java` file, parses with **regex** (don't pull in javalang —
    keep deps zero):
    - class name (`@Entity\s+...class\s+(\w+)`),
@@ -213,9 +213,9 @@ you couldn't and why.
 
 ## Files to read first (mandatory, before writing a single line)
 
-1. `neobanker-backend-MVP-V2/src/main/java/com/neobanker/neobank/models/company/Company.java` — the canonical example.
+1. `liulian-api-MVP-V2/src/main/java/com/liulian/neobank/models/company/Company.java` — the canonical example.
 2. Every `.java` file listed under "Scope (in)" above.
-3. `neobanker-backend-MVP-V2/db_tables.txt` — sanity check on table names.
+3. `liulian-api-MVP-V2/db_tables.txt` — sanity check on table names.
 4. `/Users/xiaochong/Downloads/Data组数据说明.xlsx` (sheet `数据表`) — the
    business field dictionary; helpful when an `enum` value list is not
    visible in the Java source.

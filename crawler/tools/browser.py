@@ -41,7 +41,7 @@ class BrowserFetchTool:
         self._allowed_hosts = allowed_hosts
         self._max_chars = max_chars
         self._default_headers = {
-            "User-Agent": "neobanker-crawler/0.1 (+rendered-fetch)",
+            "User-Agent": "liulian-ingest/0.1 (+rendered-fetch)",
             "Accept-Language": "en-US,en;q=0.9",
         }
         if default_headers:

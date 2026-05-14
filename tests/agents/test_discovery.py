@@ -29,7 +29,7 @@ def test_discovery_normalizes_filters_and_orders_candidates() -> None:
                     ],
                     "search_results": [
                         {
-                            "title": "Alpha Neobank",
+                            "title": "Alpha LIULIAN",
                             "url": "https://alpha.example",
                             "snippet": "Alpha is a neobank and banking app for freelancers.",
                         }
@@ -40,7 +40,7 @@ def test_discovery_normalizes_filters_and_orders_candidates() -> None:
 
         records = cast(list[dict[str, Any]], result.state["pending_create"])
         assert [item["proposed_record"]["company_name"] for item in records] == [
-            "Alpha Neobank",
+            "Alpha LIULIAN",
             "Beta Digital Bank",
         ]
         assert records[0]["proposed_record"]["domain"] == "alpha.example"
@@ -71,7 +71,7 @@ def test_discovery_dedups_existing_companies_by_domain_and_fuzzy_name() -> None:
                             "domain": "https://seen.example/home",
                         },
                         {
-                            "name": "Fresh Neobank",
+                            "name": "Fresh LIULIAN",
                             "description": "A challenger bank and banking app.",
                             "domain": "fresh.example",
                         },
@@ -82,7 +82,7 @@ def test_discovery_dedups_existing_companies_by_domain_and_fuzzy_name() -> None:
 
         assert result.metadata["pending_create_count"] == 1
         records = cast(list[dict[str, Any]], result.state["pending_create"])
-        assert records[0]["proposed_record"]["company_name"] == "Fresh Neobank"
+        assert records[0]["proposed_record"]["company_name"] == "Fresh LIULIAN"
 
     asyncio.run(run())
 
@@ -150,7 +150,7 @@ def test_discovery_dedups_with_qdrant_similarity_index() -> None:
                             "description": "A neobank mobile banking app digital bank",
                         },
                         {
-                            "name": "Nova Neobank",
+                            "name": "Nova LIULIAN",
                             "description": "A branchless digital bank.",
                         },
                     ],
@@ -163,10 +163,10 @@ def test_discovery_dedups_with_qdrant_similarity_index() -> None:
                 "action": "pending_create",
                 "status": "pending",
                 "proposed_record": {
-                    "company_name": "Nova Neobank",
+                    "company_name": "Nova LIULIAN",
                     "confidence": 0.91,
                 },
-                "provenance": [{"source_name": "Nova Neobank", "source_type": "manual"}],
+                "provenance": [{"source_name": "Nova LIULIAN", "source_type": "manual"}],
             }
         ]
 
@@ -181,7 +181,7 @@ def test_discovery_outputs_pending_create_with_provenance_and_seeds() -> None:
                     "include_seeds": True,
                     "candidates": [
                         {
-                            "name": "Review Neobank",
+                            "name": "Review LIULIAN",
                             "description": "A neobank for small businesses.",
                             "source_name": "Search API",
                             "source_type": "search",
@@ -211,12 +211,12 @@ def test_discovery_is_deterministic_and_strips_raw_content() -> None:
     async def run() -> None:
         candidates: list[JsonValue] = [
             {
-                "name": "Bravo Neobank",
+                "name": "Bravo LIULIAN",
                 "description": "A digital bank.",
                 "raw_html": "<html>secret</html>",
             },
             {
-                "name": "Alpha Neobank",
+                "name": "Alpha LIULIAN",
                 "description": "A neobank.",
                 "text": "secret page text",
                 "source": "<html>" + ("secret" * 50) + "</html>",
@@ -230,8 +230,8 @@ def test_discovery_is_deterministic_and_strips_raw_content() -> None:
         assert "secret" not in str(first.state)
         records = cast(list[dict[str, Any]], first.state["pending_create"])
         assert [item["proposed_record"]["company_name"] for item in records] == [
-            "Alpha Neobank",
-            "Bravo Neobank",
+            "Alpha LIULIAN",
+            "Bravo LIULIAN",
         ]
 
     asyncio.run(run())

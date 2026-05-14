@@ -74,7 +74,7 @@ def test_http_fetch_retries_adds_respectful_headers_and_hashes_content() -> None
         assert sleeps == [1.25]
         assert len(transport.calls) == 2
         headers = transport.calls[0][2]
-        assert headers["User-Agent"].startswith("neobanker-crawler/")
+        assert headers["User-Agent"].startswith("liulian-ingest/")
         assert headers["DNT"] == "1"
 
     asyncio.run(run())

@@ -169,7 +169,7 @@ class SnapshotStore:
             Bucket=self._bucket,
             Key=_hash_index_key(digest),
             Body=b"",
-            ContentType="application/x-neobanker-snapshot-index",
+            ContentType="application/x-liulian-snapshot-index",
             Metadata={"sha256": digest, "snapshot_key": snapshot_key_value},
         )
 

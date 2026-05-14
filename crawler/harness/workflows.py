@@ -230,7 +230,7 @@ def _slot(key: str, modulo: int) -> int:
 
 
 def _deterministic_uuid(key: str) -> UUID:
-    return uuid5(NAMESPACE_URL, f"neobanker-crawler:{key}")
+    return uuid5(NAMESPACE_URL, f"liulian-ingest:{key}")
 
 
 async def _maybe_await(value: T | Awaitable[T]) -> T:

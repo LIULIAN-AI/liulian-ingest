@@ -1,10 +1,10 @@
-# Neobanker Crawler
+# LIULIAN Crawler
 
 Standalone crawler-agent service for discovering neobanks, refreshing source data,
-validating extracted records, and writing approved changes through the Neobanker backend
+validating extracted records, and writing approved changes through the LIULIAN backend
 internal API.
 
-This repository is the crawler service, not the existing `neobanker-agent` chatbot.
+This repository is the crawler service, not the existing `liulian-agent` chatbot.
 The crawler control plane runs on port `8001` and the chatbot remains on port `8000`.
 
 ---
@@ -159,10 +159,10 @@ to real infrastructure.
 - Python 3.12 or newer.
 - `uv`.
 - Access to the sibling backend repo when running schema parity tests:
-  - local: `../neobanker-backend-MVP-V2`
+  - local: `../liulian-api-MVP-V2`
   - server: `../backend`
 - For backend writes:
-  - Neobanker backend running, normally `http://127.0.0.1:8080`
+  - LIULIAN backend running, normally `http://127.0.0.1:8080`
   - `AGENT_INTERNAL_KEY` set to the same value accepted by the backend.
 
 On the production host, `uv` is at:
@@ -177,11 +177,11 @@ On the production host, `uv` is at:
 
 ```bash
 # Local
-cd /Users/xiaochong/Documents/neobanker/neobanker-crawler
+cd /Users/xiaochong/Documents/liulian/liulian-ingest
 uv sync
 
 # Server
-cd /home/wenjixu/neobanker/crawler
+cd /home/wenjixu/liulian/crawler
 /home/wenjixu/.local/bin/uv sync
 ```
 
@@ -238,7 +238,7 @@ uv run python tools/scan_java_columns.py
 uv run uvicorn crawler.api.main:app --host 127.0.0.1 --port 8001
 
 # Server
-cd /home/wenjixu/neobanker/crawler
+cd /home/wenjixu/liulian/crawler
 /home/wenjixu/.local/bin/uv run uvicorn crawler.api.main:app --host 127.0.0.1 --port 8001
 ```
 
@@ -371,14 +371,14 @@ export AGENT_INTERNAL_KEY='<same value as backend>'
 
 ```bash
 # Server verification
-cd /home/wenjixu/neobanker/crawler
+cd /home/wenjixu/liulian/crawler
 UV=/home/wenjixu/.local/bin/uv
-UV_CACHE_DIR=/tmp/neobanker-uv-cache "$UV" run pytest -q
-UV_CACHE_DIR=/tmp/neobanker-uv-cache "$UV" run mypy src tests
-UV_CACHE_DIR=/tmp/neobanker-uv-cache "$UV" run ruff check .
+UV_CACHE_DIR=/tmp/liulian-uv-cache "$UV" run pytest -q
+UV_CACHE_DIR=/tmp/liulian-uv-cache "$UV" run mypy src tests
+UV_CACHE_DIR=/tmp/liulian-uv-cache "$UV" run ruff check .
 
 # Runtime smoke
-UV_CACHE_DIR=/tmp/neobanker-uv-cache "$UV" run uvicorn crawler.api.main:app \
+UV_CACHE_DIR=/tmp/liulian-uv-cache "$UV" run uvicorn crawler.api.main:app \
   --host 127.0.0.1 --port 8001
 curl -fsS http://127.0.0.1:8001/health
 ```
@@ -390,19 +390,19 @@ curl -fsS http://127.0.0.1:8001/health
 ```bash
 # Fill in placeholders, then install:
 #   <DEPLOY_USER>  → wenjixu
-#   <CRAWLER_DIR>  → /home/wenjixu/neobanker/crawler
+#   <CRAWLER_DIR>  → /home/wenjixu/liulian/crawler
 #
-# Create /etc/neobanker-crawler/env with:
+# Create /etc/liulian-ingest/env with:
 #   AGENT_INTERNAL_KEY=<secret>
 #   ANTHROPIC_API_KEY=<secret>
 
-sudo cp neobanker-crawler.service /etc/systemd/system/neobanker-crawler.service
-sudo mkdir -p /etc/neobanker-crawler
-sudo chmod 600 /etc/neobanker-crawler/env   # after creating the file
+sudo cp liulian-ingest.service /etc/systemd/system/liulian-ingest.service
+sudo mkdir -p /etc/liulian-ingest
+sudo chmod 600 /etc/liulian-ingest/env   # after creating the file
 sudo systemctl daemon-reload
-sudo systemctl enable neobanker-crawler
-sudo systemctl start neobanker-crawler
-sudo systemctl status neobanker-crawler
+sudo systemctl enable liulian-ingest
+sudo systemctl start liulian-ingest
+sudo systemctl status liulian-ingest
 ```
 
 ---
@@ -422,4 +422,4 @@ sudo systemctl status neobanker-crawler
 4. Smoke-test `/health`.
 5. Commit and push.
 
-GitHub repo: <https://github.com/neo-banker/neobanker-crawler>
+GitHub repo: <https://github.com/liulian-ai/liulian-ingest>

@@ -1,13 +1,13 @@
-# Neobanker Crawler control-plane systemd service
-# Install: sudo cp neobanker-crawler.service /etc/systemd/system/
-#          sudo systemctl daemon-reload && sudo systemctl enable neobanker-crawler
+# LIULIAN ingest service control-plane systemd service
+# Install: sudo cp liulian-ingest.service /etc/systemd/system/
+#          sudo systemctl daemon-reload && sudo systemctl enable liulian-ingest
 #
 # Before installing, replace:
 #   <DEPLOY_USER>   - the user running the crawler (e.g. wenjixu)
-#   <CRAWLER_DIR>   - absolute path to the crawler repo (e.g. /home/wenjixu/neobanker/crawler)
+#   <CRAWLER_DIR>   - absolute path to the crawler repo (e.g. /home/<user>/liulian/liulian-ingest)
 
 [Unit]
-Description=Neobanker Crawler Control Plane (FastAPI)
+Description=LIULIAN ingest service (data crawler) (FastAPI)
 After=network.target
 
 [Service]
@@ -18,7 +18,7 @@ ExecStart=<CRAWLER_DIR>/.venv/bin/uvicorn crawler.api.main:app --host 127.0.0.1 
 Restart=always
 RestartSec=5
 Environment=PYTHONUNBUFFERED=1
-EnvironmentFile=-/etc/neobanker-crawler/env
+EnvironmentFile=-/etc/liulian-ingest/env
 
 [Install]
 WantedBy=multi-user.target

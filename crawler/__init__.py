@@ -1,1 +1,1 @@
-"""Neobanker crawler package."""
+"""LIULIAN crawler package."""

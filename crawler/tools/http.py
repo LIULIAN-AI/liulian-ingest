@@ -97,7 +97,7 @@ class HttpFetchTool:
         retry_policy: RetryPolicy | None = None,
         retry_predicate: RetryPredicate | None = None,
         sleep: AsyncSleep | None = None,
-        user_agent: str = "neobanker-crawler/0.1 (+respectful-offline-fetch)",
+        user_agent: str = "liulian-ingest/0.1 (+respectful-offline-fetch)",
         default_headers: Mapping[str, str] | None = None,
         max_bytes: int = 5_000_000,
     ) -> None:

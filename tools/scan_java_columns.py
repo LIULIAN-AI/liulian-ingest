@@ -7,14 +7,14 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-BACKEND_MODEL_SUFFIX = Path("src/main/java/com/neobanker/neobank/models")
+BACKEND_MODEL_SUFFIX = Path("src/main/java/com/liulian/neobank/models")
 
 
 def _backend_models_root() -> Path:
     candidates = (
-        ROOT.parent / "neobanker-backend-MVP-V2" / BACKEND_MODEL_SUFFIX,
+        ROOT.parent / "liulian-api-MVP-V2" / BACKEND_MODEL_SUFFIX,
         ROOT.parent / "backend" / BACKEND_MODEL_SUFFIX,
-        ROOT.parent / "neobanker-backend" / BACKEND_MODEL_SUFFIX,
+        ROOT.parent / "liulian-api" / BACKEND_MODEL_SUFFIX,
     )
     for candidate in candidates:
         if candidate.exists():

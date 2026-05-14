@@ -18,7 +18,7 @@ def create_app(
     run_registry: InMemoryRunRegistry | None = None,
     review_queue_store: InMemoryReviewQueueStore | None = None,
 ) -> FastAPI:
-    app = FastAPI(title="Neobanker Crawler Control Plane", version="0.1.0")
+    app = FastAPI(title="LIULIAN Crawler Control Plane", version="0.1.0")
     app.state.producer = producer or InMemoryStreamProducer(stream="crawler:workflow")
     app.state.registry = registry or load_source_registry()
     app.state.observability_sink = observability_sink or InMemoryObservabilitySink()

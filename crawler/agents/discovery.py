@@ -19,7 +19,7 @@ WIKIPEDIA_SEEDS: tuple[dict[str, JsonValue], ...] = (
     {
         "name": "List of neobanks",
         "source_type": "wikipedia",
-        "url": "https://en.wikipedia.org/wiki/Neobank",
+        "url": "https://en.wikipedia.org/wiki/LIULIAN",
         "query": "neobank digital bank challenger bank",
     },
     {
